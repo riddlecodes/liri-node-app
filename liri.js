@@ -1,11 +1,15 @@
 require("dotenv").config();
+var request = require("request");
 
 // Add the code required to import the keys.js file and store it in a variable. ??
 
+/* 
 var spotify = new Spotify(keys.spotify);
-var client = new Twitter(keys.twitter);
+var client = new Twitter(keys.twitter); 
+*/
 
 var command = process.argv[2];
+var name = process.argv[3];
 
 // if else statements:
 
@@ -18,7 +22,8 @@ var command = process.argv[2];
 */
 
 if(command == 'movie-this') {
-    moviethis();
+    console.log(command);
+    moviethis(name);
 }
 
 /* YOU CAN FORMAT THE ABOVE CODE AS BELOW, IF AND ONLY IF THE FUNCTION ONLY DOES ONE THING:
@@ -44,7 +49,7 @@ function spotifythissong(song_name) {
     */
 }
 
-function moviethis(movie_name_here) {
+function moviethis(movie_name) {
     /*
     This will output the following information to your terminal/bash window:
 
@@ -69,7 +74,18 @@ It's on Netflix!
 */
 
 // the OMDB API requires an API key. You may use trilogy
-}
+
+request("http://www.omdbapi.com/?t=" + movie_name + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
+
+  // If the request is successful (i.e. if the response status code is 200)
+  if (!error && response.statusCode === 200) {
+
+    // Parse the body of the site and recover just the imdbRating
+    // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
+    console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
+  }
+});
+} // this is the end of the movie function
 
 function dowhatitsays() {
     /* Using the fs Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
