@@ -13,9 +13,9 @@ var command = process.argv[2];
 var song_name = process.argv[3];
 var movie_name = process.argv[3];
 
-
+/*
 var spotify = new Spotify(keys.spotify);
-var client = new Twitter(keys.twitter); 
+var client = new Twitter(keys.twitter); */
 
 // if else statements:
 
