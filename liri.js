@@ -59,7 +59,7 @@ function myTweets() {
   client.get('statuses/user_timeline', params, function(error, tweets) {
     if (!error) {
         for(var i = 0; i< 20; i++){
-        console.log("@iluvaripants: " + tweets[i].text);
+        console.log("@ProblyBrilliant: " + tweets[i].text);
         }
     }
 });
